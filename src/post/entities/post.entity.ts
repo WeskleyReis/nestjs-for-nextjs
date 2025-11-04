@@ -1,42 +1,42 @@
-import { User } from "src/user/entities/user.entity";
+import { User } from 'src/user/entities/user.entity';
 import {
     Column,
     CreateDateColumn,
     Entity,
     ManyToOne,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
-} from "typeorm";
+    UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Post {
     @PrimaryGeneratedColumn('uuid')
-    id: string
+    id: string;
 
     @Column()
-    title:string
+    title: string;
 
     @Column({ unique: true })
-    slug:string
+    slug: string;
 
     @Column('text')
-    content:string
+    content: string;
 
     @Column()
-    excerpt:string
+    excerpt: string;
 
     @Column({ nullable: true })
-    coverImageUrl:string
+    coverImageUrl: string;
 
     @Column({ default: false })
-    published: boolean
+    published: boolean;
 
     @CreateDateColumn()
-    createdAt: Date
+    createdAt: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date
+    updatedAt: Date;
 
     @ManyToOne(() => User, { onDelete: 'CASCADE' })
-    author: User
+    author: User;
 }

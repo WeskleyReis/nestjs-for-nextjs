@@ -14,30 +14,30 @@ export class AuthService {
     ) {}
 
     async login(loginDto: LoginDto) {
-        const user = await this.userService.findByEmail(loginDto.email)
-        const error = new UnauthorizedException('Usuário ou senha inválidos')
+        const user = await this.userService.findByEmail(loginDto.email);
+        const error = new UnauthorizedException('Usuário ou senha inválidos');
 
         if (!user) {
-            throw error
+            throw error;
         }
 
         const isPasswordValid = await this.hashingService.compare(
             loginDto.password,
-            user.password
-        )
+            user.password,
+        );
 
         if (!isPasswordValid) {
-            throw error
+            throw error;
         }
 
         const jwtPayLoad: JwtPayLoad = {
             sub: user.id,
             email: user.email,
-        }
-        const accessToken = await this.jwtService.signAsync(jwtPayLoad)
+        };
+        const accessToken = await this.jwtService.signAsync(jwtPayLoad);
 
-        user.forceLogout = false
-        await this.userService.save(user)
+        user.forceLogout = false;
+        await this.userService.save(user);
 
         return { accessToken };
     }

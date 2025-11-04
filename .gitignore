@@ -1,5 +1,7 @@
 rest-client/
 db.sqlite
+uploads
+dev
 
 # compiled output
 /dist

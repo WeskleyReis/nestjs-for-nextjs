@@ -1,6 +1,6 @@
-import { ExecutionContext, UnauthorizedException } from "@nestjs/common";
-import { JsonWebTokenError } from "@nestjs/jwt";
-import { AuthGuard } from "@nestjs/passport";
+import { ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import { JsonWebTokenError } from '@nestjs/jwt';
+import { AuthGuard } from '@nestjs/passport';
 
 export class JwtAuthGuard extends AuthGuard('jwt') {
     handleRequest<TUser = any>(
@@ -8,12 +8,12 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
         user: any,
         info: any,
         context: ExecutionContext,
-        status?: any
+        status?: any,
     ): TUser {
         if (!user || info instanceof JsonWebTokenError) {
-            throw new UnauthorizedException('Você precisa fazer login')
+            throw new UnauthorizedException('Você precisa fazer login');
         }
 
-        return super.handleRequest(err, user, info, context, status)
+        return super.handleRequest(err, user, info, context, status);
     }
 }

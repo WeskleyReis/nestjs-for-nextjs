@@ -7,30 +7,30 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({
-  imports: [
-    UserModule,
-    CommonModule,
-    JwtModule.registerAsync({
-      useFactory: () => {
-        const secret = process.env.JWT_SECRET
+    imports: [
+        UserModule,
+        CommonModule,
+        JwtModule.registerAsync({
+            useFactory: () => {
+                const secret = process.env.JWT_SECRET;
 
-        if (!secret) {
-          throw new InternalServerErrorException(
-            'JWT_SECRET not found in .env',
-          )
-        }
+                if (!secret) {
+                    throw new InternalServerErrorException(
+                        'JWT_SECRET not found in .env',
+                    );
+                }
 
-        return {
-          secret,
-          signOptions: {
-            expiresIn: Number(process.env.JWT_EXPIRATION) || 86400
-          },
-        }
-      },
-    }),
-  ],
-  controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
-  exports: [],
+                return {
+                    secret,
+                    signOptions: {
+                        expiresIn: Number(process.env.JWT_EXPIRATION) || 86400,
+                    },
+                };
+            },
+        }),
+    ],
+    controllers: [AuthController],
+    providers: [AuthService, JwtStrategy],
+    exports: [],
 })
 export class AuthModule {}

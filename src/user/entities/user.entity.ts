@@ -3,29 +3,29 @@ import {
     CreateDateColumn,
     Entity,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
-} from "typeorm"
+    UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
-    id: string
+    id: string;
 
     @Column()
-    name: string
+    name: string;
 
     @Column({ unique: true })
-    email: string
+    email: string;
 
     @Column()
-    password: string
+    password: string;
 
-    @Column({ default: false})
-    forceLogout: boolean
+    @Column({ default: false })
+    forceLogout: boolean;
 
     @CreateDateColumn()
-    createdAt: Date
+    createdAt: Date;
 
     @UpdateDateColumn()
-    updatedAt: Date
+    updatedAt: Date;
 }

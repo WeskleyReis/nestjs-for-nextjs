@@ -6,11 +6,9 @@ import { BcryptHashingService } from './hashing/bcrypt-hashing.service';
     providers: [
         {
             provide: HashingService,
-            useClass: BcryptHashingService
-        }
+            useClass: BcryptHashingService,
+        },
     ],
     exports: [HashingService],
 })
-export class CommonModule {
-
-}
+export class CommonModule {}
